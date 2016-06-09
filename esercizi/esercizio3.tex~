@@ -1,0 +1,50 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{fullpage}
+
+\usepackage{cancel}
+\begin{document}
+\section*{Esercizio 3}
+\subsection*{Caso Base ($n = 3$)}
+
+$$
+A = \frac{1}{2} \left( (x_0 - x_1)(y_0 + y_1) + (x_1 - x_2)(y_1 + y_2) + (x_2 - x_0)(y_0 + y_2) \right) =
+$$
+$$
+\frac{1}{2} \left( \cancel{x_0y_0} + x_0y_1 - x_1y_0 - \cancel{x_1y_1} + \cancel{x_1y_1} + x_1y_2 - x_2y_1 - \cancel{x_2y_2} + \cancel{x_2y_2} + x_2y_0 -x_0y_2 - \cancel{x_0y_0} \right) =  
+$$
+$$
+\frac{1}{2} \left( x_0y_1 - x_1y_0 + x_1y_2 - x_2y_1 + x_2y_0 - x_0y_2 \right)  
+$$
+$$
+\frac{1}{2} \left( y_0 (x_2 - x_1) + y_1 (x_0 - x_2) + y_2 (x_1 - x_0) \right)  
+$$
+$$
+\frac{1}{2} \sum_{i = 0}^{2} y_i (x_{i-1} - x_{i+1})
+$$
+\subsection*{Ipotesi Induttiva}
+$$
+A(p_0, p_1, \dots, p_{n-2}) = \frac{1}{2} \sum_{i = 0}^{n-2} y_i (x_{i-1} - x_{i+1})
+$$
+
+\subsection*{Passo Induttivo $(n-1) \rightarrow n$}
+$$
+A(p_0, p_1, \dots,  p_{n-2},  p_{n-1}) = A(p_0, p_{n-2},  p_{n-1}) + A(p_0, p_1, \dots, p_{n-2})
+$$
+
+$$
+\frac{1}{2} \left( y_0 (x_{n-1} - x_{n-2}) + y_{n-2} (x_{0} - x_{n-1}) + y_{n-1} (x_{n-2} - x_{0}) \right) + \\
+y_0 (x_{n-2} - x_0) + \left( \sum_{i = 0}^{n-3} y_i (x_{i-1} - x_{i+1}) \right)  + y_{n-2} (x_{n-3} - x_{0}) 
+$$
+$$
+\frac{1}{2} \left( y_0 (x_{n-1} - \cancel{x_{n-2}} + \cancel{x_{n-2}} - x_{1}) + y_{n-2} (\cancel{x_{0}} - x_{n-1} x_{n-3} - \cancel{x_{0}}) + y_{n-1} (x_{n-2} - x_{0}) \right) +
+ \left( \sum_{i = 0}^{n-3} y_i (x_{i-1} - x_{i+1}) \right) 
+$$
+$$
+\frac{1}{2} \left( y_0 (x_{n-1} - x_{1}) +  \left( \sum_{i = 0}^{n-3} y_i (x_{i-1} - x_{i+1}) \right) + y_{n-2} (x_{n-3} - x_{n-1}) + y_{n-1} (x_{n-2} - x_{0}) \right) +
+
+$$
+
+\end{document}
+
