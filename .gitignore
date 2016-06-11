@@ -1,3 +1,14 @@
+#######
+# .gitignore
+# copied from the repository : https://github.com/github/gitignore
+#######
+
+##################
+# Some Repo specific ignore tags
+#################
+Implementation/Java/build
+
+
 ##################
 # Java gitignore
 ##################
@@ -47,6 +58,9 @@ hs_err_pid*
 *.exe
 *.out
 *.app
+
+#Some strange format I found...
+*.swp
 
 ###################
 # TeX gitignore
