@@ -7,13 +7,21 @@
   <property name="build" location="build"/>
   <property name="jar" location="jar"/>
 
+  <path id="classpath.test">
+    <pathelement location="lib/junit-4.12.jar"/>
+    <pathelement location="lib/hamcrest-core-1.3.jar"/>
+    <pathelement location="${build}/test"/>
+  </path>
+
   <target name="init">
     <mkdir dir="${build}"/>
   </target>
 
   <target name="compile" depends="init"
         description="compile the source">
-    <javac srcdir="${src}" destdir="${build}"/>
+    <javac srcdir="${src}" destdir="${build}" includeantruntime="false">
+      <classpath refid="classpath.test"/>
+    </javac>
   </target>
 
   <target name="jar" depends="compile" description="generate the distribution">
@@ -28,7 +36,26 @@
 		<!-- Add here the new tests. Please create only a new jar file with the right Main-Class as above -->
   </target>
 
- 
+  <target name="test-compile" depends="compile">
+    <mkdir dir="build/test"/>
+    <javac srcdir="${src}/test" destdir="${build}/test"
+      includeantruntime="false">
+        <classpath refid="classpath.test"/>
+    </javac>
+  </target>
+
+  <target name="test" depends="test-compile">
+    <junit printsummary="on" haltonfailure="yes" fork="true">
+        <classpath>
+          <path refid="classpath.test"/>
+          <pathelement location="${build}/test"/>
+        </classpath>
+        <formatter type="brief" usefile="false" />
+        <batchtest>
+            <fileset dir="${src}/test" includes="**/*Test.java" />
+        </batchtest>
+    </junit>
+  </target>
 
   <target name="clean"
         description="clean up">
