@@ -13,6 +13,11 @@ public class PolarAngleComparatorPoint implements Comparator<Point> {
 	public PolarAngleComparatorPoint(Point _o){
 		o = _o;
 	}
+	/**
+	 * @Return Negative Integer if p < q
+	 * 		   0 if p == q
+	 * 		   Positive Integer if p > q
+	 */
 	@Override
 	public int compare(Point p, Point q) {
 		int d = Library.angleLeft(o, p, q);
