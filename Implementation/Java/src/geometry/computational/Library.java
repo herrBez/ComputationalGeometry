@@ -22,14 +22,10 @@ public class Library{
 		int d2 = angleLeft(p3, p4, p2);
 		int d3 = angleLeft(p1, p2, p3);
 		int d4 = angleLeft(p1, p2, p4);
-		int x1 = p1.getX(); int y1 = p1.getY();
-		int x2 = p2.getX(); int y2 = p2.getY();
-		int x3 = p3.getX(); int y3 = p3.getY();
-		int x4 = p4.getX(); int y4 = p4.getY();
 		if(d1 == 0 && d2 == 0 && d3 == 0 && d4 == 0){
-			boolean a = (x2 - x3) * (x1 - x3) <= 0 &&  (y2 - y3) * (y1 - y3) <= 0;
-			boolean b = (x2 - x4) * (x1 - x4) <= 0 &&  (y2 - y4) * (y1 - y4) <= 0;
-			boolean c = (x4 - x1) * (x3 - x1) <= 0 &&  (y4 - y1) * (y3 - y1) <= 0;
+			boolean a = p3.isInside(new Segment(p1,p2));
+			boolean b = p4.isInside(new Segment(p1,p2));
+			boolean c = p1.isInside(new Segment(p3,p4));
 			return a || b || c;
 		} else {
 			boolean a = (d1 <= 0 && d2 >= 0) || (d1 >= 0 && d2 <= 0);
