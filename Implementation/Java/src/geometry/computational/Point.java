@@ -76,7 +76,7 @@ public class Point {
         return true;
     }
 
-    public int sqrDistance(Point p) {
+    public int sqrDistanceFrom(Point p) {
         return (x - p.getX())^2 + (y - p.getY())^2;
     }
 }

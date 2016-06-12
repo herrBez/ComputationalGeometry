@@ -41,7 +41,7 @@ public class SortablePoint extends Point implements Comparable<Point> {
                 return -1;
         }
         // points are in the same halfline starting from origin
-        if(origin.sqrDistance(this) < origin.sqrDistance(p))
+        if(origin.sqrDistanceFrom(this) < origin.sqrDistanceFrom(p))
             return 1;
         return -1;
     }
