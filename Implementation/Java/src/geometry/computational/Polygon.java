@@ -23,4 +23,21 @@ public class Polygon {
             vertices.add(s.getP1());
         return vertices;
     }
+
+    public boolean isConvex() {
+        Point[] vertices = new Point[list.size()];
+        for (int i = 0; i < list.size(); i++)
+            vertices[i] = list.get(i).getP1();
+        for (int i = 2; i < list.size(); i++) {
+            boolean neverTurnsRight =
+                    Library.turnLeft(vertices[i-2],vertices[i-1],vertices[i]) >= 0;
+            boolean neverClosesOnItself =
+                    Library.angleLeft(vertices[0],vertices[i-1],vertices[i]) >= 0;
+            boolean neverGoesOverTheFirstEdge =
+                    Library.angleLeft(vertices[0],vertices[1],vertices[i]) >= 0;
+            if(!neverTurnsRight || !neverClosesOnItself || !neverGoesOverTheFirstEdge)
+                return false;
+        }
+        return true;
+    }
 }
