@@ -7,8 +7,9 @@ import org.junit.BeforeClass;
 import geometry.computational.*;
 
 /**
- * Test for exercise 4
+ * Test Class for exercise 4
  * 
+ * TODO: Add other special case. I'm not sure I covered'em all
  */
 public class PolarAngleCompareTest {
 	private static Point o;
@@ -31,12 +32,41 @@ public class PolarAngleCompareTest {
    */ 
   @Test
   public void equalityTest() {
-	  int xcord = xorigin + 2;
-	  int ycord = yorigin + 2;
 	  Point p = new Point(xorigin-3, yorigin+3);
 	  Point q = new Point(xorigin-3, yorigin+3);
 	  assertEquals(pacp.compare(p,q), 0);
 	  assertEquals(p, q);
+  }
+  
+  /**
+   *      q
+   *     /
+   *    p
+   *   /
+   *  O---------
+   * 
+   * p < q
+   */
+  @Test
+  public void colinearPBiggerThanQ() {
+	 Point p = new Point(xorigin+1, yorigin+1);
+	 Point q = new Point(xorigin+3, yorigin+3);
+	 assertTrue(pacp.compare(p, q) < 0);
+  }
+  
+  /**   
+   *      p
+   *     / 
+   *    q
+   *   /
+   *  O-----------
+   *  p > q
+   */
+  @Test
+  public void colinearPSmallerThanQ(){
+	  Point p = new Point(xorigin+3, yorigin+3);
+	  Point q = new Point(xorigin+1, yorigin+1);
+	  assertTrue(pacp.compare(p, q) > 0);
   }
   
   /**
@@ -89,9 +119,62 @@ public class PolarAngleCompareTest {
    public void PositiveAngleBetweenPAndQFalseFriend(){
 	   Point p = new Point(xorigin+2, yorigin-4);
 	   Point q = new Point(xorigin+2, yorigin+4);
+	   assertTrue(pacp.compare(p,q) > 0);
+
+   }
+   
+   /** AngleLeft is negative */
+  
+  /**
+   *  
+   * 		 q
+   * 	p	/					
+   *     \ /
+   *      O-----------
+   * 	p > q
+   */
+   @Test
+   public void  NegativeAngleBetweenPAndQ(){
+	   Point p = new Point(xorigin-2, yorigin+2);
+	   Point q = new Point(xorigin+2, yorigin+4);
+	   assertTrue(pacp.compare(p,q) > 0);
+   }
+   /**    
+    * 	   p
+    *     /
+    * 	 /
+    * 	O---------------
+    * 	 \
+    * 	  \
+    * 	   q
+    *   p < q
+    */
+   @Test
+   public void NegativeAngleBetweenPAndQFalseFriend(){
+	   Point p = new Point(xorigin+2, yorigin+4);
+	   Point q = new Point(xorigin+2, yorigin-4);
 	   assertTrue(pacp.compare(p,q) < 0);
 
    }
+   
+   /**
+    *         q
+    * 
+    * 	O------
+    *  /
+    * p
+    * 
+    * 
+    * 
+    * TODO: Find a better name ;)
+    */
+   @Test
+   public void AnotherBrickInTheWall(){
+	   Point p = new Point(xorigin-2, yorigin-3);
+	   Point q = new Point(xorigin+6, yorigin+2);
+	   assertTrue(pacp.compare(p,q) > 0);
+   }
+   
   
 
 }
