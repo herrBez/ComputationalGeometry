@@ -44,4 +44,18 @@ public class PointTest {
         assertTrue("Should intersect", p.segmentIntersectRightHalfLine(sDoesIntersect));
     }
 
+    @org.junit.Test
+    public void isInside() throws Exception {
+        Point p = new Point(xcoord, ycoord);
+        Point origin = new Point(0,0);
+
+        Point p1 = new Point(2,0);
+        Segment sDoesNotContainP = new Segment(origin, p1);
+        assertFalse("Segment should not contain P", p.isInside(sDoesNotContainP));
+
+        Point p2 = new Point(2,42);
+        Segment sContainsP = new Segment(origin, p2);
+        assertTrue("Segment should contain P", p.isInside(sContainsP));
+    }
+
 }
