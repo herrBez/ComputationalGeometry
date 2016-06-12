@@ -47,7 +47,7 @@ public class SortablePoint extends Point implements Comparable<Point> {
         return 1;
     }
 
-    public static Point createSortablePoint(int x, int y, Point origin) {
+    public static SortablePoint createSortablePoint(int x, int y, Point origin) {
         return new SortablePoint(x,y).withOrigin(origin);
     }
 }
