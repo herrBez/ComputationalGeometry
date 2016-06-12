@@ -54,6 +54,17 @@ public class PolarAngleCompareTest {
 	 assertTrue(pacp.compare(p, q) < 0);
   }
   
+  /**
+   * 
+   *  p----O----q
+   */
+  @Test
+  public void justAnotherCollinearTest(){
+	  Point p = new Point(xorigin-10, yorigin);
+	  Point q = new Point(xorigin+10, yorigin);
+	  assertTrue(pacp.compare(p,q) > 0);
+  }
+  
   /**   
    *      p
    *     / 
@@ -155,6 +166,8 @@ public class PolarAngleCompareTest {
 	   assertTrue(pacp.compare(p,q) < 0);
 
    }
+   
+   
 
    /**
     *         q

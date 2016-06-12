@@ -47,13 +47,14 @@ public class PolarAngleComparatorPoint implements Comparator<Point> {
 		/* They are collinear */
 		/* In order to check p----o----q or q-----o-----p */
 		if((xp - xo)*(xo - xq) > 0) { // They lies on different parts
+			System.out.println("Hai Raggiunto un bel pezzo di codice" + p + ";;" + q);
 			if(xp > xq) {
 				return -1;
 			}
 			else {
 				return 1;
 			}
-		} 
+		}
 		int dxp = (xp - xo); int dyp = (yp - yo);
 		int dxq = (xq - xo); int dyq = (yq - yo);
 		int lp = dxp * dxp + dyp * dyp;
