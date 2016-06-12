@@ -120,8 +120,6 @@ public class PolarAngleCompareTest {
 	   Point p = new Point(xorigin+2, yorigin-4);
 	   Point q = new Point(xorigin+2, yorigin+4);
 	   assertTrue(pacp.compare(p,q) > 0);
-<<<<<<< HEAD
-
    }
    
    /** AngleLeft is negative */
@@ -175,13 +173,7 @@ public class PolarAngleCompareTest {
 	   Point q = new Point(xorigin+6, yorigin+2);
 	   assertTrue(pacp.compare(p,q) > 0);
    }
-   
-  
-=======
 
-   }
-
->>>>>>> 01dae3e4adf152d8b9a146230c7eb86e978f7985
 
 }
 
