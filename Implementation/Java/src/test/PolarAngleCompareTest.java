@@ -56,7 +56,7 @@ public class PolarAngleCompareTest {
   public void oppositeTest(){
 	  Point p = new Point(xorigin+2, yorigin+2);
 	  Point q = new Point(xorigin-2, yorigin-2);
-	  assertTrue(pacp.compare(p,q) < 0);
+	  assertTrue(pacp.compare(p,q) == 0);
 
   }
   /** AngleLeft is positive */
