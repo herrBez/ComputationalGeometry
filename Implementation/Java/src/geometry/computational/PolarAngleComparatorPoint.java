@@ -13,12 +13,49 @@ public class PolarAngleComparatorPoint implements Comparator<Point> {
 	public PolarAngleComparatorPoint(Point _o){
 		o = _o;
 	}
+	
+	@Override
+	public int compare(Point p, Point q){
+		if(p.equals(q))
+			return 0;
+		int xp = p.getX(); int yp = p.getY();
+		int xo = o.getX(); int yo = o.getY();
+		int xq = q.getX(); int yq = q.getY();
+		if((yp - yo)*(yq - yo) > 0){
+			if(yp > yq) {
+				return -1;
+			} else {
+				return 1;
+			}
+		}
+		int d = Library.angleLeft(o, p, q);
+		if(d > 0){
+			return -1;
+		} else if(d < 0){
+			return 1;
+		}
+		/* They are collinear */
+		/* In order to check p----o----q or q-----o-----p */
+		if((xp - xo)*(xq - xo) > 0) { // They lies on different parts
+			if(xp > xq) {
+				return -1;
+			}
+			else {
+				return 1;
+			}
+		} 
+		int dxp = (xp - xo); int dyp = (yp - yo);
+		int dxq = (xq - xo); int dyq = (yq - yo);
+		int lp = dxp * dxp + dyp * dyp;
+		int lq = dxq * dxq + dyq * dyq;
+		return lp - lq; //
+	}
 	/**
 	 * @Return Negative Integer if p < q
 	 * 		   0 if p == q
 	 * 		   Positive Integer if p > q
 	 */
-	@Override
+	/*@Override
 	public int compare(Point p, Point q) {
 		int d = Library.angleLeft(o, p, q);
 		int xp = p.getX(); int yp = p.getY();
@@ -34,7 +71,6 @@ public class PolarAngleComparatorPoint implements Comparator<Point> {
 				int dxq = (xq - xo); int dyq = (yq - yo);
 
 			if((dxp * dxq >= 0) && (dyp * dyq >= 0)){ //They lie on the same part
-				/* Checking the length of the vector with respect to O */
 				int lp = dxp * dxp + dyp * dyp;
 				int lq = dxq * dxq + dyq * dyp;
 				if(lp > lq) { // p > q
@@ -66,10 +102,11 @@ public class PolarAngleComparatorPoint implements Comparator<Point> {
 			}
 			return 1;
 		}
-	}
+	}*/
 	
 	@Override
 	public boolean equals(Object obj) {
-		return true;
+		PolarAngleComparatorPoint pacp = (PolarAngleComparatorPoint)obj;
+		return o.equals(pacp.o);
 	}
 }

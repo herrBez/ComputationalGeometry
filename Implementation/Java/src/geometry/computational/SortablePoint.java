@@ -34,6 +34,7 @@ public class SortablePoint extends Point implements Comparable<Point> {
             return -1;
         // points are collinear
         if((getX() - origin.getX()) * (origin.getX() - p.getX()) > 0) {
+			System.out.println("Hello World it's me");
             // check who's above and who's not
             if (getX() > p.getX())
                 return 1;
