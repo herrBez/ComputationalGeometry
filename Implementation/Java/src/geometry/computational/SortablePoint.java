@@ -23,28 +23,28 @@ public class SortablePoint extends Point implements Comparable<Point> {
         if((getY() - origin.getY()) * (origin.getY() - p.getY()) > 0) {
             // check who's above and who's not
             if (getY() > p.getY())
-                return 1;
-            else
                 return -1;
+            else
+                return 1;
         }
         // points are in the same halfplane
         if(Library.angleLeft(origin, this, p) > 0)
-            return 1;
-        if(Library.angleLeft(origin, this, p) < 0)
             return -1;
+        if(Library.angleLeft(origin, this, p) < 0)
+            return 1;
         // points are collinear
         if((getX() - origin.getX()) * (origin.getX() - p.getX()) > 0) {
 			System.out.println("Hello World it's me");
             // check who's above and who's not
             if (getX() > p.getX())
-                return 1;
-            else
                 return -1;
+            else
+                return 1;
         }
         // points are in the same halfline starting from origin
-        if(origin.sqrDistance(this) < origin.sqrDistance(p))
-            return 1;
-        return -1;
+        if(origin.sqrDistanceFrom(this) < origin.sqrDistanceFrom(p))
+            return -1;
+        return 1;
     }
 
     public static Point createSortablePoint(int x, int y, Point origin) {

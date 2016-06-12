@@ -86,15 +86,15 @@ public class PolarAngleCompareTest {
   public void oppositeTest(){
 	  Point p = new Point(xorigin+2, yorigin+2);
 	  Point q = new Point(xorigin-2, yorigin-2);
-	  assertTrue(pacp.compare(p,q) == 0);
+	  assertTrue(pacp.compare(p,q) < 0);
 
   }
   /** AngleLeft is positive */
 
   /**
-   *  
+   *
    * 		 p
-   * 	q	/					
+   * 	q	/
    *     \ /
    *      O-----------
    * 	p < q
@@ -103,7 +103,7 @@ public class PolarAngleCompareTest {
    public void  PositiveAngleBetweenPAndQ(){
 	   Point p = new Point(xorigin+2, yorigin+4);
 	   Point q = new Point(xorigin-2, yorigin+2);
-	   assertTrue(pacp.compare(p,q) > 0);
+	   assertTrue(pacp.compare(p,q) < 0);
    }
    /**
     * 	   q
@@ -121,13 +121,13 @@ public class PolarAngleCompareTest {
 	   Point q = new Point(xorigin+2, yorigin+4);
 	   assertTrue(pacp.compare(p,q) > 0);
    }
-   
+
    /** AngleLeft is negative */
-  
+
   /**
-   *  
+   *
    * 		 q
-   * 	p	/					
+   * 	p	/
    *     \ /
    *      O-----------
    * 	p > q
@@ -138,7 +138,7 @@ public class PolarAngleCompareTest {
 	   Point q = new Point(xorigin+2, yorigin+4);
 	   assertTrue(pacp.compare(p,q) > 0);
    }
-   /**    
+   /**
     * 	   p
     *     /
     * 	 /
@@ -155,16 +155,16 @@ public class PolarAngleCompareTest {
 	   assertTrue(pacp.compare(p,q) < 0);
 
    }
-   
+
    /**
     *         q
-    * 
+    *
     * 	O------
     *  /
     * p
-    * 
-    * 
-    * 
+    *
+    *
+    *
     * TODO: Find a better name ;)
     */
    @Test
