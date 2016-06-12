@@ -34,11 +34,11 @@ public class ThreePointsCollinearityChecker {
 			for(int i = 0; i < n; i++){
 				copySet[i] = set[i];
 			}
-			for(int i = 0; i < n; i++){
+			for(int i = 0; i < n-1; i++){
 				pacp.setOrigin(copySet[i]);
 				Arrays.sort(set, pacp);
 				for(int j = 1; j < n-2; j++){
-					int d = Library.angleLeft(set[0], set[(j)%n], set[(j+1)%n]);
+					int d = Library.angleLeft(set[0], set[j], set[j+1]);
 					if(d == 0){ 
 						//System.out.println("The Points " + set[0] + "," + set[j] + "," + set[j+1] + " are collinear");
 						return true;
