@@ -13,6 +13,12 @@ public class PolarAngleComparatorPoint implements Comparator<Point> {
 	public PolarAngleComparatorPoint(Point _o){
 		o = _o;
 	}
+	public PolarAngleComparatorPoint(){
+		o = new Point(0,0);
+	}
+	public void setOrigin(Point _o){
+		o = _o;
+	}
 	/**
 	 * @Return Negative Integer if p < q
 	 * 		   0 if p == q
