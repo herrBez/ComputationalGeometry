@@ -3,26 +3,29 @@ package geometry.computational;
 import geometry.computational.*;
 import java.util.TreeSet;
 
-public class SweepState implements RBTree{
-	private TreeSet<Segment> ts;
+public class SweepState extends TreeSet<Segment> implements RBTree{
+	
 	
 	public SweepState(){
-		ts = new TreeSet<>(new SweepSegmentComparator());
+		super(new SweepSegmentComparator());
 	}
-	public void insert(Segment s) {
-		ts.add(s);
+	
+	public boolean insert(Segment s) {
+		boolean res = this.add(s);
+		if(!res){
+			System.err.println("Cannot add");
+		}
+		return res;
 	}
-	public void delete(Segment s){
-		ts.remove(s);
+	public boolean delete(Segment s){
+		return this.remove(s);
 	}
 	public Segment above(Segment s){
-		return ts.ceiling(s);
+		return this.ceiling(s);
 	}
 	public Segment below(Segment s){
-		return ts.floor(s);
+		return this.floor(s);
 	}
-	public TreeSet<Segment> getRBTree(){
-		return ts;
-	}
+	
 }
 
