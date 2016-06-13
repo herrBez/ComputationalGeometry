@@ -5,6 +5,7 @@ import geometry.computational.Point;
 import geometry.computational.Segment;
 
 import static org.junit.Assert.*;
+import org.junit.Test;
 
 /**
  */
@@ -15,7 +16,7 @@ public class LibraryTest {
     private static int xcoord2 = 2;
     private static int ycoord2 = 2;
 
-    @org.junit.Test
+    @Test
     public void segmentsShouldIntersect() throws Exception {
         Point origin = new Point(xcoord1, ycoord1); // 'non-particular' case
         Point a2 = new Point(xcoord2, ycoord2);
@@ -50,7 +51,7 @@ public class LibraryTest {
         assertTrue("OE2 and E3E4 should intersect", Library.segments_intersect(s1, s2));
     }
 
-    @org.junit.Test
+    @Test
     public void segmentsShouldNotIntersect() throws Exception {
         Point origin = new Point(xcoord1, ycoord1); // 'non-particular' case
         Point a2 = new Point(xcoord2, ycoord2);
@@ -72,5 +73,6 @@ public class LibraryTest {
         s2 = new Segment(c3,c4);
         assertFalse("OC2 and C3C4 should not intersect", Library.segments_intersect(s1, s2));
     }
-
+    
+    
 }

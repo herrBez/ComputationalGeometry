@@ -23,7 +23,9 @@ public class Polygon {
             vertices.add(s.getP1());
         return vertices;
     }
-
+	/**
+	 * Solution of exercise 6
+	 */
     public boolean isConvex() {
         Point[] vertices = new Point[list.size()];
         for (int i = 0; i < list.size(); i++)
@@ -40,4 +42,5 @@ public class Polygon {
         }
         return true;
     }
+   
 }
