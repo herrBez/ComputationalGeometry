@@ -15,7 +15,7 @@ public class IncrementalConvexHullGenerator implements ConvexHullGenerator {
 		Arrays.sort(p, new LeftToRightComparator());
 		List<Point> CH = new ArrayList<>(); //Creating an empty Convex Hull
 		CH.add(p[0]);
-		/* In order to have a counter clockwise sorted list */
+		/* In order to have a clockwise sorted list */
 		if(Library.angleLeft(p[0], p[1], p[2]) > 0){
 			CH.add(p[2]);
 			CH.add(p[1]);
@@ -27,45 +27,48 @@ public class IncrementalConvexHullGenerator implements ConvexHullGenerator {
 
 		for(int i = 3; i < n; i++){
 			int j = getRightMostIndex(CH);
-			int u = j;
-			int l = CH.size();
+			int upperIndex = j;
+			int CHSize = CH.size();
 			List<Point> toRemoveRefferingToU = new ArrayList<>();
 			List<Point> toRemoveRefferingToV = new ArrayList<>(); 
 			/* Finding the uppest tangent */
-			while((CH.get(u).getY() < CH.get((u+1)%l).getY() || (CH.get(u).getY() < CH.get((u-1+l) %l).getY()))
-			 && Library.angleLeft(p[i], CH.get(u), CH.get((u-1+l) % l)) < 0){
-				if(u != j){
-					toRemoveRefferingToU.add(CH.get(u));
+			while((CH.get(upperIndex).getY() < CH.get((upperIndex+1)%CHSize).getY() || (CH.get(upperIndex).getY() < CH.get((upperIndex-1+CHSize) %CHSize).getY()))
+			 && Library.angleLeft(p[i], CH.get(upperIndex), CH.get((upperIndex-1+CHSize) % CHSize)) < 0){
+				if(upperIndex != j){
+					toRemoveRefferingToU.add(CH.get(upperIndex));
 				}
-				u = ((u - 1 + l) % l);
+				upperIndex = ((upperIndex - 1 + CHSize) % CHSize);
 			}
-			int v = j;
+			int lowerIndex = j;
 			/* Finding the lowest tangent */
-			while((CH.get(v).getY() > CH.get((v+1)%l).getY() || (CH.get(v).getY() > CH.get((v-1+l) %l).getY()))
-			 && Library.angleLeft(p[i], CH.get(v), CH.get((v+1)%l)) > 0 ){
+			while((CH.get(lowerIndex).getY() > CH.get((lowerIndex+1)%CHSize).getY() || (CH.get(lowerIndex).getY() > CH.get((lowerIndex-1+CHSize) %CHSize).getY()))
+			 && Library.angleLeft(p[i], CH.get(lowerIndex), CH.get((lowerIndex+1)%CHSize)) > 0 ){
 				
-				if(v != u) {
-					toRemoveRefferingToV.add(CH.get(v));
+				if(lowerIndex != upperIndex) {
+					toRemoveRefferingToV.add(CH.get(lowerIndex));
 
 				}
-				v = ((v + 1) % l);
+				lowerIndex = ((lowerIndex + 1) % CHSize);
 			}
 
-			CH.add((u+1)%(l+1), p[i]);
-
+			
+			CH.add((upperIndex+1)%(CHSize+1), p[i]);
 			for(Point z : toRemoveRefferingToU){
 				CH.remove(z);
 			}
 			for(Point z : toRemoveRefferingToV){
 				CH.remove(z);
 			}
-			System.out.println("After" + CH.toString());
+			System.out.println("It " + i + ":"  + CH.toString());
 
 		} 
 		System.out.println("After" + CH.toString());
 		return polygon;
 	}
 	
+	/**
+	 * O(n) find the rightmost point of CH i-1.
+	 */
 	private int getRightMostIndex(List<Point> CH){
 		LeftToRightComparator ltrc = new LeftToRightComparator();
 		int index = 0;

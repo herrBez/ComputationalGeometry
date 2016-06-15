@@ -13,6 +13,7 @@ public class Polygon {
         list = _list;
     }
 	
+
 	
     public Polygon(Point ... p){
 		int n = p.length;
