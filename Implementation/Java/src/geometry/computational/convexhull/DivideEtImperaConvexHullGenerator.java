@@ -57,99 +57,119 @@ public class DivideEtImperaConvexHullGenerator implements ConvexHullGenerator {
 	
 	
 	
-	private CircularList<Point> merge(CircularList<Point> leftList, CircularList<Point> rightList){
+	private CircularList<Point> merge(CircularList<Point> HA, CircularList<Point> HB){
+		Segment tLower = LowerTangent(HA, HB);
+		Segment tUpper = UpperTangent(HA, HB);
 		
-		System.out.println("[Merge] Merging " + leftList + " with " + rightList); 
 		
-		int R = getRightMostIndex(leftList.toArray(new Point[leftList.size()]));
-		int L = getLeftMostIndex(rightList.toArray(new Point[rightList.size()]));
-		
-		int r = R;
-		int l = L;
-		
-		System.out.println("[Merge ] Starting R=r=" + leftList.get(r) + " L=l=" + rightList.get(l));
-		
-		/* Finding lower tangent */
-		int nLeftList = leftList.size();
-		int nRightList = rightList.size();
-		
-		if(nLeftList > 1 || nRightList > 1){
-			while((Library.angleLeft(rightList.get(l), leftList.get(r), leftList.getPrec(r)) > 0) &&
-					(leftList.get(r).getY() > leftList.getNext(r).getY() ||
-					leftList.get(r).getY() > leftList.getPrec(r).getY()) 
-					||
-					(Library.angleLeft(leftList.get(r), rightList.get(l), rightList.getNext(l)) > 0) &&
-					(rightList.get(l).getY() > rightList.getNext(l).getY() ||
-					rightList.get(l).getY() > leftList.getPrec(l).getY())){
-					
-					
-					
-				while((Library.angleLeft(rightList.get(l), leftList.get(r), leftList.getPrec(r)) > 0) &&
-					(leftList.get(r).getY() > leftList.getNext(r).getY() ||
-					leftList.get(r).getY() > leftList.getPrec(r).getY())) {
-							r = (r - 1 + nLeftList) % nLeftList;
-				}
-				while((Library.angleLeft(leftList.get(r), rightList.get(l), rightList.getNext(l)) > 0) &&
-					(rightList.get(l).getY() > rightList.getNext(l).getY() ||
-					rightList.get(l).getY() > leftList.getPrec(l).getY())) {			
-						l = (l + 1) % nRightList;
-				}
-			}
-		}
-		
-		//}
-		/* Finding upper tangent */
-		
-		if(nLeftList > 1 || nRightList > 1){
-		
-			while((Library.angleLeft(leftList.get(R), rightList.get(L), rightList.getPrec(L)) > 0 &&
-						(rightList.get(L).getY() < rightList.getNext(L).getY() ||
-						rightList.get(L).getY() < rightList.getPrec(L).getY())) 
-						||
-				(Library.angleLeft(rightList.get(L), leftList.get(R), leftList.getNext(R)) < 0 &&
-						(leftList.get(R).getY() < leftList.getNext(R).getY() ||
-						leftList.get(R).getY() < leftList.getPrec(R).getY()))){
-					
-				
-				while((Library.angleLeft(leftList.get(R), rightList.get(L), rightList.getPrec(L)) > 0) &&
-						(rightList.get(L).getY() < rightList.getNext(L).getY() ||
-						rightList.get(L).getY() < rightList.getPrec(L).getY())) {
-						
-						L = (L - 1 + nRightList) % nRightList;
-					
-				}
-				while((Library.angleLeft(rightList.get(L), leftList.get(R), leftList.getNext(R)) > 0) &&
-						(leftList.get(R).getY() < leftList.getNext(R).getY() ||
-						leftList.get(R).getY() < leftList.getPrec(R).getY())) {
-						
-						R = (R + 1) % nLeftList;
-					
-				}
-			}
-		}
-		
-		System.out.println("[Merge] Upper Left " + leftList.get(R) + " Upper Right " + rightList.get(L));
-		System.out.println("[Merge] Lower Left " + leftList.get(r) + " Lower Right " + rightList.get(l));
-
+		tLower.sortExtremity();
+		tUpper.sortExtremity();
+		int a = HA.indexOf(tLower.getP1());
+		int b = HB.indexOf(tLower.getP2());
+		int A = HA.indexOf(tUpper.getP1());
+		int B = HB.indexOf(tUpper.getP2());
 		
 		CircularList<Point> result = new CircularList<>();
-		int i = (R+1)%nLeftList;
-		int j = l;
-		/* N.B. Point R and r of leftList and L and l of rightList belongs to the merged convexHull */
-		while(!leftList.get(i).equals(leftList.getNext(r))){
-			result.add(leftList.get(i));
-			i = (i + 1) % nLeftList;
+		int i = (A+1)%HA.size();
+		int j = b;
+		/* N.B. Point A and a of leftList and B and b of rightList belongs to the merged convexHull */
+		while(!HA.get(i).equals(HA.getNext(a))){
+			result.add(HA.get(i));
+			i = (i + 1) % HA.size();
 		}
 		
-		while(!rightList.get(j).equals(rightList.getNext(L))){
-			result.add(rightList.get(j));
-			j = (j + 1) % nRightList;
+		while(!HB.get(j).equals(HB.getNext(B))){
+			result.add(HB.get(j));
+			j = (j + 1) % HB.size();
 		}
 		
-		result.add(leftList.get(R));
+		result.add(HA.get(A));
 	
 		return result;
 	}
+	
+	
+	/**
+	 * PseudoCode
+	 * 	(1) Let a be the rightmost point of HA .
+		(2) Let b be the leftmost point of HB .
+		(3) While ab is not a lower tangent for HA and HB do
+				(a) While ab is not a lower tangent to HA do a = a - 1 (move a clockwise).
+				(b) While ab is not a lower tangent to HB do b = b + 1 (move b counterclockwise).
+		(4) Return ab.
+	 */
+	public Segment LowerTangent(CircularList<Point> HA, CircularList<Point>HB){
+		int a = getRightMostIndex(HA.toArray(new Point[HA.size()]));
+		int b = getLeftMostIndex(HB.toArray(new Point[HB.size()]));
+		while(!(
+			/* Is Tangent for HA ?*/
+				(
+					(Library.angleLeft(HB.get(b), HA.getPrec(a), HA.get(a)) > 0) &&
+					(Library.angleLeft(HB.get(b), HA.get(a), HA.getNext(a)) < 0)
+				) 
+				&&
+				/* Is Tangent for HB ? */
+				(
+					(Library.angleLeft(HA.get(a), HB.getPrec(b), HB.get(b)) < 0 ) &&
+					(Library.angleLeft(HA.get(a), HB.get(b), HB.getNext(b)) > 0 ) 
+				))
+			)
+			{
+				
+				while(!(
+					(Library.angleLeft(HB.get(b), HA.getPrec(a), HA.get(a)) > 0) &&
+					(Library.angleLeft(HB.get(b), HA.get(a), HA.getNext(a)) < 0)
+				)) {
+					a = (a - 1 + HA.size()) % HA.size();
+				}
+				
+				while(!(
+					(Library.angleLeft(HA.get(a), HB.getPrec(b), HB.get(b)) < 0 ) &&
+					(Library.angleLeft(HA.get(a), HB.get(b), HB.getNext(b)) > 0 ) 
+				)) {
+					b = (b + 1 + HB.size()) % HB.size();
+				}
+		}
+		return new Segment(HA.get(a), HB.get(b));
+	}
+	
+	public Segment UpperTangent(CircularList<Point> HA, CircularList<Point>HB){
+		
+		int A = getRightMostIndex(HA.toArray(new Point[HA.size()]));
+		int B = getLeftMostIndex(HB.toArray(new Point[HB.size()]));
+		while(!(
+			/* Is Tangent for HA ?*/
+				(
+					(Library.angleLeft(HB.get(B), HA.getPrec(A), HA.get(A)) > 0) &&
+					(Library.angleLeft(HB.get(B), HA.get(A), HA.getNext(A)) < 0)
+				) 
+				&&
+				/* Is Tangent for HB ? */
+				(
+					(Library.angleLeft(HA.get(A), HB.getPrec(B), HB.get(B)) < 0 ) &&
+					(Library.angleLeft(HA.get(A), HB.get(B), HB.getNext(B)) > 0 ) 
+				))
+			)
+			{
+				
+				while(!(
+					(Library.angleLeft(HB.get(B), HA.getPrec(A), HA.get(A)) > 0) &&
+					(Library.angleLeft(HB.get(B), HA.get(A), HA.getNext(A)) < 0)
+				)) {
+					A = (A + 1 + HA.size()) % HA.size();
+				}
+				
+				while(!(
+					(Library.angleLeft(HA.get(A), HB.getPrec(B), HB.get(B)) < 0 ) &&
+					(Library.angleLeft(HA.get(A), HB.get(B), HB.getNext(B)) > 0 ) 
+				)) {
+					B = (B - 1 + HB.size()) % HB.size();
+				}
+		}
+		return new Segment(HA.get(A), HB.get(B));
+	}
+
+	
 	
 	
 	private String ArrayToString(Point [] p){
