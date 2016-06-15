@@ -12,6 +12,31 @@ public class Polygon {
     public Polygon(List<Segment> _list) {
         list = _list;
     }
+	
+	
+    public Polygon(Point ... p){
+		int n = p.length;
+		list = new ArrayList<Segment>();
+		for(int i = 0; i < n; i++){
+			list.add(new Segment(p[i], p[(i+1)%n]));
+		}
+	}
+	//TODO Add exception
+	//Please insert a even number of coordinates
+	public Polygon(int ... coordinates){
+		
+		int n = coordinates.length/2;
+		Point [] p = new Point[n];
+		int j = 0;
+		for(int i = 0; i < 2*n; i += 2){
+			p[j++] = new Point(coordinates[i], coordinates[i+1]);
+		}
+		
+		list = new ArrayList<Segment>();
+		for(int i = 0; i < n; i++){
+			list.add(new Segment(p[i], p[(i+1)%n]));
+		}
+	}
 
     public List<Segment> getList() {
         return list;
