@@ -44,7 +44,7 @@ public class Polygon {
     }
 
     public List<Point> getVertices() {
-        List<Point> vertices = new ArrayList<>();
+        List<Point> vertices = new ArrayList<Point>();
         for(Segment s : list)
             vertices.add(s.getP1());
         return vertices;

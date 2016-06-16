@@ -1,6 +1,5 @@
 package geometry.computational;
 
-import geometry.computational.*;
 
 public class Event implements Comparable<Event>{
 	private Segment s;
@@ -23,7 +22,7 @@ public class Event implements Comparable<Event>{
 		return left;
 	}
 	
-	@Override
+	
     public int compareTo(Event e) {
 		if(this.p.getX() < e.p.getX())
 			return -1;

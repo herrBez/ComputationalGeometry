@@ -20,7 +20,7 @@ public class SweepStateTest {
 		sweepState.insert(new Segment(1, 2, 2, 1));
 		sweepState.insert(new Segment(1, 1, 2, 2));
 		sweepState.insert(new Segment(5, 5, 3, 3));
-		Iterator<Segment> it = sweepState.getRBTree().iterator();
+		Iterator<Segment> it = sweepState.iterator();
 		while(it.hasNext()){
 			System.out.println(it.next());
 		}

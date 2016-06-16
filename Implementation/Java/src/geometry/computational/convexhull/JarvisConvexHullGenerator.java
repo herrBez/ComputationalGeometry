@@ -1,17 +1,16 @@
 package geometry.computational.convexhull;
 
-import geometry.computational.*;
+import geometry.computational.Point;
+import geometry.computational.Polygon;
+import geometry.computational.Segment;
+import geometry.computational.SortablePoint;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 
 /**
  */
 public class JarvisConvexHullGenerator implements ConvexHullGenerator {
 
-    @Override
     public Polygon generateConvexHull(Polygon polygon) {
         Point[] vertices = (Point[]) polygon.getVertices().toArray();
         Point bottomLeftCorner = polygon.getVertices().get(0);
@@ -24,7 +23,7 @@ public class JarvisConvexHullGenerator implements ConvexHullGenerator {
             if(p.getY() >= topRightCorner.getY() &&
                     p.getX() > topRightCorner.getX())
                 topRightCorner = p;
-        ArrayList<Point> hullPoints = new ArrayList<>();
+        ArrayList<Point> hullPoints = new ArrayList<Point>();
         Point current = bottomLeftCorner;
         hullPoints.add(current);
         while(current != topRightCorner) {
@@ -36,7 +35,7 @@ public class JarvisConvexHullGenerator implements ConvexHullGenerator {
             hullPoints.add(current);
             current = minPolarLeft(vertices, current);
         }
-        ArrayList<Segment> hullSegments = new ArrayList<>();
+        ArrayList<Segment> hullSegments = new ArrayList<Segment>();
         for(int i = 0; i < hullPoints.size(); i++)
             hullSegments.add(new Segment(hullPoints.get(i),
                     hullPoints.get((i+1)%hullPoints.size())));

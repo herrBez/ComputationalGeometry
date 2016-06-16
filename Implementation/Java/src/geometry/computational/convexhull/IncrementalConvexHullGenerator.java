@@ -7,13 +7,12 @@ import java.util.*;
 /**
  */
 public class IncrementalConvexHullGenerator implements ConvexHullGenerator {
-	@Override
 	public Polygon generateConvexHull(Polygon polygon) {
 		Point[] p = (Point[]) polygon.getVertices().toArray(new Point[polygon.getList().size()]);
 		int n = p.length;
 		
 		Arrays.sort(p, new LeftToRightComparator());
-		List<Point> CH = new ArrayList<>(); //Creating an empty Convex Hull
+		List<Point> CH = new ArrayList<Point>(); //Creating an empty Convex Hull
 		CH.add(p[0]);
 		/* In order to have a clockwise sorted list */
 		if(Library.angleLeft(p[0], p[1], p[2]) > 0){
@@ -29,8 +28,8 @@ public class IncrementalConvexHullGenerator implements ConvexHullGenerator {
 			int j = getRightMostIndex(CH);
 			int upperIndex = j;
 			int CHSize = CH.size();
-			List<Point> toRemoveRefferingToU = new ArrayList<>();
-			List<Point> toRemoveRefferingToV = new ArrayList<>(); 
+			List<Point> toRemoveRefferingToU = new ArrayList<Point>();
+			List<Point> toRemoveRefferingToV = new ArrayList<Point>(); 
 			/* Finding the uppest tangent */
 			while((CH.get(upperIndex).getY() < CH.get((upperIndex+1)%CHSize).getY() || (CH.get(upperIndex).getY() < CH.get((upperIndex-1+CHSize) %CHSize).getY()))
 			 && Library.angleLeft(p[i], CH.get(upperIndex), CH.get((upperIndex-1+CHSize) % CHSize)) < 0){

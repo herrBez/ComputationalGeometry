@@ -16,7 +16,6 @@ public class SortablePoint extends Point implements Comparable<Point> {
         return this;
     }
 
-    @Override
     public int compareTo(Point p) {
         if(this.equals(p))
             return 0;

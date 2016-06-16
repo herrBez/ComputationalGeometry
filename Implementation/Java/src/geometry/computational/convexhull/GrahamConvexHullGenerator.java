@@ -1,18 +1,24 @@
 package geometry.computational.convexhull;
 
-import geometry.computational.*;
+import geometry.computational.Library;
+import geometry.computational.Point;
+import geometry.computational.PolarAngleComparatorPoint;
+import geometry.computational.Polygon;
+import geometry.computational.Segment;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.ListIterator;
+import java.util.Stack;
 
 /**
  */
 public class GrahamConvexHullGenerator implements ConvexHullGenerator {
 
-    private Stack<Point> stack = new Stack<>();
-    private PolarAngleComparatorPoint pacp = new PolarAngleComparatorPoint();
+	private Stack<Point> stack = new Stack<Point>();
+	private PolarAngleComparatorPoint pacp = new PolarAngleComparatorPoint();
 
-    @Override
-    public Polygon generateConvexHull(Polygon polygon) {
+	public Polygon generateConvexHull(Polygon polygon) {
         Point[] vertices = (Point[]) polygon.getVertices().toArray();
         Point bottomLeftCorner = polygon.getVertices().get(0);
         for(Point p : vertices)
@@ -35,10 +41,11 @@ public class GrahamConvexHullGenerator implements ConvexHullGenerator {
             stack.push(vertices[i]);
         }
         Point[] hullVertices = new Point[stack.size()];
-        ListIterator<Point> iterator = stack.listIterator();
+        //TODO
+        //Is not used.. Is it coorect ListIterator<Point> iterator = stack.listIterator();
         for(int i = 0; i < stack.size(); i++)
             hullVertices[i] = stack.pop();
-        ArrayList<Segment> hullSegments = new ArrayList<>();
+        ArrayList<Segment> hullSegments = new ArrayList<Segment>();
         for(int i = 0; i < hullVertices.length; i++)
             hullSegments.add(new Segment(hullVertices[i],
                     hullVertices[(i+1)%hullVertices.length]));
@@ -46,14 +53,14 @@ public class GrahamConvexHullGenerator implements ConvexHullGenerator {
         return convexHull;
     }
 
-    private Point peekNextToTop() {
-        Point top = stack.pop();
-        Point point = null;
-        try {
-            point = stack.peek();
-        } finally {
-            stack.push(top);
-            return point;
-        }
-    }
+	private Point peekNextToTop() {
+		Point top = stack.pop();
+		Point point = null;
+		try {
+			point = stack.peek();
+		} finally {
+			stack.push(top);
+			return point;
+		}
+	}
 }

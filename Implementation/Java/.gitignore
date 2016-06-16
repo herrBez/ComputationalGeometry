@@ -1,1 +1,5 @@
+#ignoring eclipse overhead files
+.metadata/*
+#ignoring idea overhead files
 .idea/*
+junit*.properties

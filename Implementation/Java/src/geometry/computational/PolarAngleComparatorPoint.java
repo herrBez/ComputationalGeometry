@@ -24,7 +24,6 @@ public class PolarAngleComparatorPoint implements Comparator<Point> {
 	 * 		   0 if p == q
 	 * 		   Positive Integer if p > q
 	 */
-	@Override
 	public int compare(Point p, Point q){
 		if(p.equals(q))
 			return 0;

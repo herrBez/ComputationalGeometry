@@ -9,7 +9,6 @@ import geometry.computational.*;
  */
 public class LeftToRightComparator implements Comparator<Point> {
 	
-	@Override
 	public int compare(Point p, Point q){
 		if(p.equals(q))
 			return 0;

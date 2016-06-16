@@ -1,7 +1,6 @@
 package geometry.computational;
 
-import geometry.computational.*;
-import java.util.*;
+import java.util.Comparator;
 
 /**
  * Exercise 9
@@ -10,7 +9,6 @@ public class SweepSegmentComparator implements Comparator<Segment>{
 	
 	public SweepSegmentComparator(){}
 	
-	@Override
 	public int compare(Segment s, Segment t){
 		Point p1 = s.getP1(); Point p2 = s.getP2();
 		Point p3 = t.getP1(); Point p4 = s.getP2();
