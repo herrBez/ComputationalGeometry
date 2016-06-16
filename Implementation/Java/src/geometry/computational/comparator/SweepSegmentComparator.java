@@ -29,12 +29,11 @@ public class SweepSegmentComparator implements Comparator<Segment>{
 		Point c = s2.getP2(); Point d = s2.getP2();
 		int d1 = Library.angleLeft(a, b, c);
 		int d2 = Library.angleLeft(a, b, d);
-		if((d1 < 0 && d2 < 0)){
+		if((d1 < 0 && d2 < 0))
 			return 1;
-		}
-		if((d1 > 0 && d2 > 0)){
+		else if((d1 > 0 && d2 > 0))
 			return -1;
-		}
+		
 		return sweepX;
 	}
 	

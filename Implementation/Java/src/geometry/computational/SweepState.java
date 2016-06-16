@@ -11,7 +11,14 @@ public class SweepState extends TreeSet<Segment> implements RBTree{
 		super(new SweepSegmentComparator());
 	}
 	
+	private void updateComparator(int x){
+		((SweepSegmentComparator) comparator()).setX(x);
+	}
+	
 	public boolean insert(Segment s) {
+		//Insert -> Event correspond to left extremity of s
+		int x = s.getP1().getX();
+		updateComparator(x);
 		boolean res = this.add(s);
 		if(!res){
 			System.err.println("Cannot add");
@@ -19,6 +26,8 @@ public class SweepState extends TreeSet<Segment> implements RBTree{
 		return res;
 	}
 	public boolean delete(Segment s){
+		int x = s.getP2().getX();
+		updateComparator(x);
 		return this.remove(s);
 	}
 	public Segment above(Segment s){
