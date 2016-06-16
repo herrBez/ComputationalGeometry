@@ -9,6 +9,11 @@
 Implementation/Java/build
 
 
+###################
+## Remove Eclipse 
+###################
+.metadata
+.project
 ##################
 # Java gitignore
 ##################
