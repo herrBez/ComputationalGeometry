@@ -1,4 +1,4 @@
-package geometry.computational;
+package geometry.computational.comparator;
 
 import java.util.*;
 import geometry.computational.*;

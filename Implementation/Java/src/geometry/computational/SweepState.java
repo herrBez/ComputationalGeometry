@@ -1,5 +1,7 @@
 package geometry.computational;
 
+import geometry.computational.comparator.SweepSegmentComparator;
+
 import java.util.TreeSet;
 
 public class SweepState extends TreeSet<Segment> implements RBTree{

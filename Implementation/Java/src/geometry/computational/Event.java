@@ -22,9 +22,9 @@ public class Event implements Comparable<Event>{
 		return left;
 	}
 	
-	
-    public int compareTo(Event e) {
-		if(this.p.getX() < e.p.getX())
+	public int compareTo(Event e) {
+		
+    	if(this.p.getX() < e.p.getX())
 			return -1;
 		else if(this.p.getX() > e.p.getX())
 			return 1;

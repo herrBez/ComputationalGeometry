@@ -2,9 +2,9 @@ package geometry.computational.convexhull;
 
 import geometry.computational.Library;
 import geometry.computational.Point;
-import geometry.computational.PolarAngleComparatorPoint;
 import geometry.computational.Polygon;
 import geometry.computational.Segment;
+import geometry.computational.comparator.PolarAngleComparatorPoint;
 
 import java.util.ArrayList;
 import java.util.Arrays;

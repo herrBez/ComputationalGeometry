@@ -1,11 +1,11 @@
 package geometry.computational.convexhull;
 
 import geometry.computational.CircularList;
-import geometry.computational.LeftToRightComparator;
 import geometry.computational.Library;
 import geometry.computational.Point;
 import geometry.computational.Polygon;
 import geometry.computational.Segment;
+import geometry.computational.comparator.LeftToRightComparator;
 
 import java.util.Arrays;
 import java.util.Collections;

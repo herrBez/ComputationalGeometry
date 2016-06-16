@@ -30,7 +30,7 @@ public class DummyTest {
 		CircularList<Point> HB = new CircularList<Point>(new Polygon(4,0,8,1,8,5,4,5).getVertices());
 		Segment ab = deichc.LowerTangent(HA, HB);
 		Segment AB = deichc.UpperTangent(HA, HB);
-		System.out.println(ab);
-		System.out.println(AB);
+		assertTrue(ab.equals(new Segment(0,0,4,0)));
+		assertTrue(AB.equals(new Segment(1,6,8,5)));
 	}
 }

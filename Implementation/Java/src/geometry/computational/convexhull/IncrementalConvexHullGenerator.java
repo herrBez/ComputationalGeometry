@@ -1,6 +1,7 @@
 package geometry.computational.convexhull;
 
 import geometry.computational.*;
+import geometry.computational.comparator.LeftToRightComparator;
 
 import java.util.*;
 

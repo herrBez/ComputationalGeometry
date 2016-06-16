@@ -80,4 +80,5 @@ public class Point {
         return ((x - p.getX()) * (x - p.getX()) +
                 (y - p.getY()) * (y - p.getY()));
     }
+     
 }

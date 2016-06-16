@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import geometry.computational.*;
+import geometry.computational.comparator.PolarAngleComparatorPoint;
 
 /**
  * Test Class for exercise 4

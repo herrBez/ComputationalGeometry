@@ -12,7 +12,7 @@ public class CircularList<T> extends ArrayList<T> {
 	}
 	
 	public T getNext(int i){
-		return get((i + this.size() + 1) % this.size());
+		return get((i + 1 + this.size()) % this.size());
 	}
 	public T getPrec(int i){
 		return get((i - 1 + this.size()) % this.size());

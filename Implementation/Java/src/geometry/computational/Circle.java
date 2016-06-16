@@ -4,8 +4,8 @@ package geometry.computational;
  * 
  */
 public class Circle {
-	private int r;
-	private Point c;
+	private final int r;
+	private final Point c;
 	
 	public Circle(Point _c, int _r){
 		c = _c;
