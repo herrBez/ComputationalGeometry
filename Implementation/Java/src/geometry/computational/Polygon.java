@@ -15,7 +15,7 @@ public class Polygon {
 
 	public Polygon(Point... p) {
 		int n = p.length;
-		list = new ArrayList<Segment>();
+		list = new ArrayList<>();
 		for (int i = 0; i < n; i++) {
 			list.add(new Segment(p[i], p[(i + 1) % n]));
 		}
@@ -32,7 +32,7 @@ public class Polygon {
 			p[j++] = new Point(coordinates[i], coordinates[i + 1]);
 		}
 
-		list = new ArrayList<Segment>();
+		list = new ArrayList<>();
 		for (int i = 0; i < n; i++) {
 			list.add(new Segment(p[i], p[(i + 1) % n]));
 		}
@@ -43,7 +43,7 @@ public class Polygon {
 	}
 
 	public List<Point> getVertices() {
-		List<Point> vertices = new ArrayList<Point>();
+		List<Point> vertices = new ArrayList<>();
 		for (Segment s : list)
 			vertices.add(s.getP1());
 		return vertices;
