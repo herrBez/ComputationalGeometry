@@ -43,13 +43,13 @@ public class Point {
 		int intersections = 0;
 		List<Segment> segments = polygon.getList();
 		List<Point> vs = polygon.getVertices();
-		Point[] vertices = (Point[]) vs.toArray();
+		Point[] vertices = vs.toArray(new Point[vs.size()]);
 		for (Segment s : segments)
 			if (this.isInside(s))
 				return true;
 		for (int i = 0; i < vertices.length; i++) {
 			Point curr = vertices[i];
-			Point pred = vertices[(i - 1) % vertices.length];
+			Point pred = vertices[(i + vertices.length - 1) % vertices.length];
 			Point foll = vertices[(i + 1) % vertices.length];
 			if ((curr.getY() - pred.getY()) * (foll.getY() - curr.getY()) > 0)
 				intersections++;
