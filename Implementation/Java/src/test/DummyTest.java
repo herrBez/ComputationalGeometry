@@ -1,12 +1,13 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import geometry.computational.CircularList;
+import geometry.computational.Point;
+import geometry.computational.Polygon;
+import geometry.computational.Segment;
+import geometry.computational.convexhull.DivideEtImperaConvexHullGenerator;
+
 import org.junit.Test;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import geometry.computational.*;
-import geometry.computational.convexhull.*;
-import java.util.*;
 
 
 public class DummyTest {

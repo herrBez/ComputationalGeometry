@@ -1,32 +1,34 @@
 package geometry.computational.comparator;
 
-import java.util.*;
-import geometry.computational.*;
+import geometry.computational.Point;
+import java.util.Comparator;
+
 /**
- * Comparator that implements the exercise 4 
+ * Comparator that implements the exercise 4
  * 
  * 
  */
 public class LeftToRightComparator implements Comparator<Point> {
-	
-	public int compare(Point p, Point q){
-		if(p.equals(q))
+
+	public int compare(Point p, Point q) {
+		if (p.equals(q))
 			return 0;
-		int xp = p.getX(); int yp = p.getY();
-		int xq = q.getX(); int yq = q.getY();
-		if(xp < xq) {
+		int xp = p.getX();
+		int yp = p.getY();
+		int xq = q.getX();
+		int yq = q.getY();
+		if (xp < xq) {
 			return -1;
-		}
-		else if(xp > xq) {
+		} else if (xp > xq) {
 			return 1;
-		} 
-		else {//p and q have the same x coordinate, sorting using y
-			if(yp < yq)
+		} else {// p and q have the same x coordinate, sorting using y
+			if (yp < yq)
 				return -1;
-			else //they cannot be equal because of the first test
+			else
+				// they cannot be equal because of the first test
 				return 1;
 		}
-		
+
 	}
-	
+
 }

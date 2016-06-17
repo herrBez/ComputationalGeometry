@@ -1,11 +1,12 @@
 package test;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import geometry.computational.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import geometry.computational.Point;
 import geometry.computational.comparator.PolarAngleComparatorPoint;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 /**
  * Test Class for exercise 4

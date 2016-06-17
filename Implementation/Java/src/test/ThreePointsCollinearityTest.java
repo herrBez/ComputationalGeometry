@@ -1,10 +1,12 @@
 package test;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
-import org.junit.Before;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import geometry.computational.Point;
+import geometry.computational.ThreePointsCollinearityChecker;
+
 import org.junit.BeforeClass;
-import geometry.computational.*;
+import org.junit.Test;
 
 /**
  * Test Class for exercise 5

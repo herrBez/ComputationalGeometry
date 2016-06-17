@@ -1,9 +1,10 @@
 package test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import geometry.computational.Point;
 import geometry.computational.Segment;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by nate on 11/06/16.

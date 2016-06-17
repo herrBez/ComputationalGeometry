@@ -5,5 +5,5 @@ import geometry.computational.Polygon;
 /**
  */
 public interface ConvexHullGenerator {
-    public Polygon generateConvexHull(Polygon polygon);
+	public Polygon generateConvexHull(Polygon polygon);
 }

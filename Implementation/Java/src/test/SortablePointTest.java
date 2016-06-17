@@ -1,9 +1,8 @@
 package test;
 
+import static org.junit.Assert.assertTrue;
 import geometry.computational.Point;
 import geometry.computational.SortablePoint;
-
-import static org.junit.Assert.*;
 
 /**
  */

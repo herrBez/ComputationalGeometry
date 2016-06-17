@@ -63,34 +63,37 @@ public class DivideEtImperaConvexHullGenerator implements ConvexHullGenerator {
 		return merge(leftConvexHull, rightConvexHull);
 	}
 
-	private CircularList<Point> merge(CircularList<Point> HA, CircularList<Point> HB){
+	private CircularList<Point> merge(CircularList<Point> HA,
+			CircularList<Point> HB) {
 		Segment tLower = LowerTangent(HA, HB);
 		Segment tUpper = UpperTangent(HA, HB);
-		
-		
+
 		tLower.sortExtremity();
 		tUpper.sortExtremity();
 		int a = HA.indexOf(tLower.getP1());
 		int b = HB.indexOf(tLower.getP2());
 		int A = HA.indexOf(tUpper.getP1());
 		int B = HB.indexOf(tUpper.getP2());
-		
+
 		CircularList<Point> result = new CircularList<Point>();
-		int i = (A+1)%HA.size();
+		int i = (A + 1) % HA.size();
 		int j = b;
-		/* N.B. Point A and a of leftList and B and b of rightList belongs to the merged convexHull */
-		while(!HA.get(i).equals(HA.getNext(a))){
+		/*
+		 * N.B. Point A and a of leftList and B and b of rightList belongs to
+		 * the merged convexHull
+		 */
+		while (!HA.get(i).equals(HA.getNext(a))) {
 			result.add(HA.get(i));
 			i = (i + 1) % HA.size();
 		}
-		
-		while(!HB.get(j).equals(HB.getNext(B))){
+
+		while (!HB.get(j).equals(HB.getNext(B))) {
 			result.add(HB.get(j));
 			j = (j + 1) % HB.size();
 		}
-		
+
 		result.add(HA.get(A));
-	
+
 		return result;
 	}
 
@@ -149,8 +152,6 @@ public class DivideEtImperaConvexHullGenerator implements ConvexHullGenerator {
 		}
 		return new Segment(HA.get(A), HB.get(B));
 	}
-
-	
 
 	/**
 	 * O(n) find the rightmost point of CH i-1.
