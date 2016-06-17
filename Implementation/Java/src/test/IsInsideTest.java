@@ -55,6 +55,25 @@ public class IsInsideTest {
 	}
 
     @Test
+    public void isInsideTriangle() {
+        List<Segment> segments = new ArrayList<>();
+        segments.add(new Segment(0,0,6,0));
+        segments.add(new Segment(6,0,3,6));
+        segments.add(new Segment(3,6,0,0));
+        Polygon polygon = new Polygon(segments);
+        Point inside = new Point(2,2);
+        Point outsideL = new Point(-1,2); // left
+        Point outsideLB = new Point(-1,-1); // left and below
+        Point outsideLT = new Point(0,6); // left and top
+        Point outsideR = new Point(110,2); // right
+        assertTrue(inside.isInside(polygon));
+        assertFalse(outsideL.isInside(polygon));
+        assertFalse(outsideLB.isInside(polygon));
+        assertFalse(outsideLT.isInside(polygon));
+        assertFalse(outsideR.isInside(polygon));
+    }
+
+    @Test
     public void isInsideSquare() {
         List<Segment> segments = new ArrayList<>();
         segments.add(new Segment(0,0,5,0));
@@ -62,7 +81,13 @@ public class IsInsideTest {
         segments.add(new Segment(5,5,0,5));
         segments.add(new Segment(0,5,0,0));
         Polygon polygon = new Polygon(segments);
-        Point p = new Point(2,2);
-        assertTrue(p.isInside(polygon));
+        Point inside = new Point(2,2);
+        Point outsideL = new Point(-1,2); // left
+        Point outsideLB = new Point(-1,-1); // left and below
+        Point outsideR = new Point(110,2); // right
+        assertTrue(inside.isInside(polygon));
+        assertFalse(outsideL.isInside(polygon));
+        assertFalse(outsideLB.isInside(polygon));
+        assertFalse(outsideR.isInside(polygon));
     }
 }
