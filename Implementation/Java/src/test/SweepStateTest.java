@@ -5,8 +5,6 @@ import geometry.computational.Segment;
 import geometry.computational.SweepState;
 import geometry.computational.comparator.SweepSegmentComparator;
 
-import java.util.Iterator;
-
 import org.junit.Before;
 import org.junit.Test;
 
