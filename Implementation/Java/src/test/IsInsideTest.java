@@ -54,6 +54,15 @@ public class IsInsideTest {
 		assertFalse(outside.isInside(s));
 	}
 
+    /**
+     * Triangle
+     *   o   •
+     *      / \
+     * o   / P-\-------o---
+     *    /     \
+     *   •=======•
+     * o
+     */
     @Test
     public void isInsideTriangle() {
         List<Segment> segments = new ArrayList<>();
@@ -73,6 +82,15 @@ public class IsInsideTest {
         assertFalse(outsideR.isInside(polygon));
     }
 
+    /**
+     * Square
+     *   •=======•
+     *   |       |
+     * o |  i----|---o-------
+     *   |       |
+     *   •=======•
+     * o
+     */
     @Test
     public void isInsideSquare() {
         List<Segment> segments = new ArrayList<>();
