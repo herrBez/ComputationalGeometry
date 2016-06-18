@@ -51,9 +51,10 @@ public class Point {
 			Point curr = vertices[i];
 			Point pred = vertices[(i + vertices.length - 1) % vertices.length];
 			Point foll = vertices[(i + 1) % vertices.length];
-			if ((curr.getY() - pred.getY()) * (foll.getY() - curr.getY()) > 0)
+			if (curr.getX() > x &&
+				(curr.getY() - pred.getY()) * (foll.getY() - curr.getY()) > 0)
 				intersections++;
-			if (curr.getY() == foll.getY() && foll.getY() == y)
+			if (curr.getX() > x && curr.getY() == foll.getY() && foll.getY() == y)
 				intersections++;
 		}
 		for (Segment s : segments) {

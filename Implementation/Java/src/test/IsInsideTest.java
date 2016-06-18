@@ -90,4 +90,48 @@ public class IsInsideTest {
         assertFalse(outsideLB.isInside(polygon));
         assertFalse(outsideR.isInside(polygon));
     }
+
+    /**
+     * Fig. A
+     * o •===• o •
+     *   |    \ /|
+     * o |  P--•-|----------
+     *   | i     |
+     * o •=======•
+     */
+    @Test
+    public void isInsideFigA() {
+        List<Segment> segments = new ArrayList<>();
+        segments.add(new Segment(0,0,10,0));
+        segments.add(new Segment(10,0,10,10));
+        segments.add(new Segment(10,10,8,5));
+        segments.add(new Segment(8,5,6,10));
+        segments.add(new Segment(6,10,0,10));
+        segments.add(new Segment(0,10,0,0));
+        Polygon polygon = new Polygon(segments);
+        Point inside = new Point(2,2); // inside
+        Point insideEdgeCase = new Point(2,5); // inside with edge case
+        Point outsideL = new Point(-1,2); // left
+        Point outsideLB = new Point(-1,0); // left and below
+        Point outsideLBet = new Point(8,10); // left and between
+        Point outsideLT = new Point(-1,10); // left and top
+        Point outsideR = new Point(110,2); // right
+        Point outsideEdgeCase = new Point(-1,5); // left and edge case
+        assertTrue(inside + " should be inside",
+                inside.isInside(polygon));
+        assertTrue(insideEdgeCase + " should be inside",
+                insideEdgeCase.isInside(polygon));
+        assertFalse(outsideL + " should not be inside",
+                outsideL.isInside(polygon));
+        assertFalse(outsideLB + " should not be inside",
+                outsideLB.isInside(polygon));
+        assertFalse(outsideLBet + " should not be inside",
+                outsideLBet.isInside(polygon));
+        assertFalse(outsideLT + " should not be inside",
+                outsideLT.isInside(polygon));
+        assertFalse(outsideR + " should not be inside",
+                outsideR.isInside(polygon));
+        assertFalse(outsideEdgeCase + " should not be inside",
+                outsideEdgeCase.isInside(polygon));
+    }
 }
