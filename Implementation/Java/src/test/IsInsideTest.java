@@ -152,4 +152,54 @@ public class IsInsideTest {
         assertFalse(outsideEdgeCase + " should not be inside",
                 outsideEdgeCase.isInside(polygon));
     }
+
+    /**
+     * Fig. B
+     * o •=====================•
+     *    \      P            /
+     * o   \ i • i •         /
+     *      \ / \ / \       /
+     *   o   • o • o •==•==•
+     */
+    @Test
+    public void isInsideFigB() {
+        List<Segment> segments = new ArrayList<>();
+        segments.add(new Segment(2,0,4,10));
+        segments.add(new Segment(4,10,6,0));
+        segments.add(new Segment(6,0,8,10));
+        segments.add(new Segment(8,10,10,0));
+        segments.add(new Segment(10,0,12,0));
+        segments.add(new Segment(12,0,14,0));
+        segments.add(new Segment(14,0,16,20));
+        segments.add(new Segment(16,20,0,20));
+        segments.add(new Segment(0,20,2,0));
+        Polygon polygon = new Polygon(segments);
+        Point inside = new Point(2,2); // inside
+        Point insideBet1 = new Point(2,10); // inside and between
+        Point insideBet2 = new Point(6,10); // inside and between
+        Point outsideL = new Point(-1,2); // left
+        Point outsideLBet = new Point(-1,10); // left and between
+        Point outsideLT = new Point(-1,20); // left and top
+        Point outsideEdgeCase = new Point(0,0); // left and edge case
+        Point outsideBBet1 = new Point(5,0); // left and between #1
+        Point outsideBBet2 = new Point(7,0); // left and between #2
+        assertTrue(inside + " should be inside",
+                inside.isInside(polygon));
+        assertTrue(insideBet1 + " should be inside",
+                insideBet1.isInside(polygon));
+        assertTrue(insideBet2 + " should be inside",
+                insideBet2.isInside(polygon));
+        assertFalse(outsideL + " should not be inside",
+                outsideL.isInside(polygon));
+        assertFalse(outsideLBet + " should not be inside",
+                outsideLBet.isInside(polygon));
+        assertFalse(outsideLT + " should not be inside",
+                outsideLT.isInside(polygon));
+        assertFalse(outsideEdgeCase + " should not be inside",
+                outsideEdgeCase.isInside(polygon));
+        assertFalse(outsideBBet1 + " should not be inside",
+                outsideBBet1.isInside(polygon));
+        assertFalse(outsideBBet2 + " should not be inside",
+                outsideBBet2.isInside(polygon));
+    }
 }
