@@ -51,7 +51,7 @@ public class Point {
 			Point curr = vertices[i];
 			Point pred = vertices[(i + vertices.length - 1) % vertices.length];
 			Point foll = vertices[(i + 1) % vertices.length];
-			if (curr.getX() > x &&
+			if (curr.getX() > x && curr.getY() == y &&
 				(curr.getY() - pred.getY()) * (foll.getY() - curr.getY()) > 0)
 				intersections++;
 			if (curr.getX() > x && curr.getY() == foll.getY() && foll.getY() == y)
