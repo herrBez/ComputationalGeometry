@@ -65,7 +65,7 @@ public class IsInsideTest {
      */
     @Test
     public void isInsideTriangle() {
-        List<Segment> segments = new ArrayList<>();
+        List<Segment> segments = new ArrayList<Segment>();
         segments.add(new Segment(0,0,6,0));
         segments.add(new Segment(6,0,3,6));
         segments.add(new Segment(3,6,0,0));
@@ -93,7 +93,7 @@ public class IsInsideTest {
      */
     @Test
     public void isInsideSquare() {
-        List<Segment> segments = new ArrayList<>();
+        List<Segment> segments = new ArrayList<Segment>();
         segments.add(new Segment(0,0,5,0));
         segments.add(new Segment(5,0,5,5));
         segments.add(new Segment(5,5,0,5));
@@ -119,7 +119,7 @@ public class IsInsideTest {
      */
     @Test
     public void isInsideFigA() {
-        List<Segment> segments = new ArrayList<>();
+        List<Segment> segments = new ArrayList<Segment>();
         segments.add(new Segment(0,0,10,0));
         segments.add(new Segment(10,0,10,10));
         segments.add(new Segment(10,10,8,5));
@@ -163,7 +163,7 @@ public class IsInsideTest {
      */
     @Test
     public void isInsideFigB() {
-        List<Segment> segments = new ArrayList<>();
+        List<Segment> segments = new ArrayList<Segment>();
         segments.add(new Segment(2,0,4,10));
         segments.add(new Segment(4,10,6,0));
         segments.add(new Segment(6,0,8,10));
@@ -213,7 +213,7 @@ public class IsInsideTest {
      */
     @Test
     public void isInsideFigC() {
-        List<Segment> segments = new ArrayList<>();
+        List<Segment> segments = new ArrayList<Segment>();
         segments.add(new Segment(0,0,10,0));
         segments.add(new Segment(10,0,10,5));
         segments.add(new Segment(10,5,10,10));
