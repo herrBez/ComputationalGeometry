@@ -44,4 +44,7 @@ public class Event implements Comparable<Event> {
 			}
 		}
 	}
+	public String toString(){
+		return "[" + s + " " + (left?"true":"false") + "]";
+	}
 }

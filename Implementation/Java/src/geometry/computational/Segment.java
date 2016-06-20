@@ -6,6 +6,7 @@ package geometry.computational;
 public class Segment {
 	private Point p1;
 	private Point p2;
+	
 
 	public Segment(Point p1, Point p2) {
 		this.p1 = p1;
@@ -29,6 +30,13 @@ public class Segment {
 		Point tmp = p1;
 		p1 = p2;
 		p2 = tmp;
+	}
+	
+	public Point getLeft(){
+		return p1;
+	}
+	public Point getRight(){
+		return p2;
 	}
 
 	/**

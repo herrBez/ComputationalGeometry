@@ -1,7 +1,13 @@
 package test;
 
 import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import geometry.computational.Polygon;
 import geometry.computational.Segment;
+import geometry.computational.SweepAlgorithm;
 import geometry.computational.SweepState;
 import geometry.computational.comparator.SweepSegmentComparator;
 
@@ -30,27 +36,15 @@ public class SweepStateTest {
 
 	@Test
 	public void insertTest() {
-		sweepState = new SweepState();
-		sweepState.insert(new Segment(1, 2, 2, 1));
-		sweepState.insert(new Segment(1, 1, 2, 2));
-		sweepState.insert(new Segment(5, 5, 3, 3));
+	
+		SweepAlgorithm sa = new SweepAlgorithm(10);
+		sa.run();
 		
-		assertTrue(sweepState.size() == 3);
-		//System.out.println(sweepState);
 	}
 
 	@Test
 	public void aboveTest() {
-		sweepState = new SweepState();
-		Segment s = new Segment(0,2,2,1);
-		Segment t = new Segment(0,0,1,1);
-		Segment v = new Segment(1,2,2,2);
-		Segment u = new Segment(1,3,4,2);
-		sweepState.insert(t);
-		sweepState.insert(s);
-		sweepState.insert(v);
-		sweepState.insert(u);
-		System.out.println(sweepState);
+		
 	}
 
 	@Test
