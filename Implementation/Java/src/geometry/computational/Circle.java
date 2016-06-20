@@ -46,7 +46,7 @@ public class Circle {
 		return d > square(r1) && d > square(r2);
 	}
 	
-	public boolean intersectCircle(Circle o){
+	public boolean intersectCircleSpecialCasesCovered(Circle o){
 		int r1 = r;
 		int r2 = o.r;
 		if(isConcentric(o)) {
@@ -74,6 +74,13 @@ public class Circle {
 		System.out.println("Square of (" + r1 + "-" + r2 + ") is " + square(r1-r2));
 
 		return d < square(r1-r2);
+	}
+	
+	public boolean intersectCircle(Circle o){
+		int d = c.sqrDistanceFrom(o.c);
+		int r1 = this.r;
+		int r2 = o.r;
+		return d >= square(r1-r2) && d <= square(r1+r2); 
 	}
 
 }
