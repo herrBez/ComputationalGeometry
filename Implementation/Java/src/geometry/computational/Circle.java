@@ -46,10 +46,7 @@ public class Circle {
 		int r1 = r;
 		int r2 = o.r;
 		
-		if(d > square(r1+r2)){
-			return true;
-		}
-		return false;
+		return d > square(r1) && d > square(r2);
 	}
 	
 	public boolean intersectCircle(Circle o){
@@ -81,6 +78,5 @@ public class Circle {
 
 		return d < square(r1-r2);
 	}
-	
 
 }
